@@ -1,0 +1,12 @@
+body.presurvey-page .navbar .nav-gotoform-btn {
+    display: none;
+}
+
+.presurvey-page {
+
+    .presurvey-page__wrapper {
+        max-width: 1024px;
+        margin: 5rem auto;
+
+    }
+}

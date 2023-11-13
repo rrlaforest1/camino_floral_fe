@@ -1,0 +1,49 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--dark-gray);
+    height: 50px;
+    color: white;
+
+    &>div>ul {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        height: 100%;
+
+        padd & li {
+            cursor: pointer;
+        }
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        & span {}
+
+        & img {
+            width: 2rem;
+        }
+    }
+
+
+    .nav-subscribe-btn {
+        color: var(--dark-gray);
+        background-color: white;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .nav-gotoform-btn {
+        color: var(--dark-gray);
+        background-color: #FFF5BF;
+        padding: 0.3rem 1rem;
+        border-radius: 30px;
+        margin-right: 2rem;
+    }
+
+
+
+}
