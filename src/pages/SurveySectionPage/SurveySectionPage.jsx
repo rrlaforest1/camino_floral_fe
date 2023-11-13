@@ -9,12 +9,25 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
   const { sectionId } = useParams();
   const navigate = useNavigate();
 
-  const formChecks = {};
-  form_es[sectionId].subsections.forEach((subsection) => {
-    formChecks[subsection.index] = [false, false];
-  });
-  const [checkedInputs, setCheckedInputs] = useState(formChecks);
-  console.log("checkedInputs", checkedInputs);
+  useEffect(() => {
+    document.body.classList.add(`survey-section-${sectionId}`);
+    return () => {
+      document.body.classList.remove(`survey-section-${sectionId}`);
+    };
+  }, []);
+
+  let formChecks = {};
+  if (formResults[sectionId]) {
+    //if there are result for this section apply thme
+    formChecks = formResults[sectionId];
+  } else {
+    //else the fill set it all to false
+    form_es[sectionId].subsections.forEach((subsection) => {
+      formChecks[subsection.index] = [false, false];
+    });
+  }
+
+  const [checkedInputs, setCheckedInputs] = useState({});
 
   function handleChange(i1, i2) {
     const updatedCheckedInputs = { ...checkedInputs };
@@ -23,9 +36,11 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
     setCheckedInputs(updatedCheckedInputs);
   }
 
+  /**
+   * Slider for horizontal navigation of each subsection
+   * @param {String} side
+   */
   function handleSlider(side, event) {
-    console.log("form on slider", form);
-
     const slidesQty = form_es[sectionId].subsections.length;
     const horizontalSliderHolder = event.target
       .closest(".form__sections")
@@ -41,7 +56,7 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
     const current = horizontalSliderHolder.querySelector(".current");
 
     if (side === "next") {
-      console.log("next");
+      //if there are more slides, go to next subsection
       if (horizontalSliderPosition > -(slideWidth * (slidesQty - 1))) {
         horizontalSliderHolder.style.left =
           horizontalSliderPosition - slideWidth + "px";
@@ -50,28 +65,30 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
           current.nextSibling.classList.add("current");
         }
       } else {
-        console.log("XXX");
+        //else if there is a next section to to the next section else got to the final page
         if (current.getAttribute("data-index") == slidesQty - 1) {
-          console.log("next Section!!!");
           for (let i = 0; i < form.length; i++) {
-            console.log("form[i]", form[i], sectionId, form[i + 1]);
             if (form[i] == sectionId && form[i + 1]) {
-              console.log("YYYY");
               setFormResults({
                 ...formResults,
                 [sectionId]: checkedInputs,
               });
+              setCheckedInputs({});
               navigate(`${appRoutes.Survey}/${form[i + 1]}`);
               horizontalSliderHolder.style.left = 0;
             } else if (form[i] == sectionId && i == form.length - 1) {
-              console.log("go to final page");
-              navigate(`${appRoutes.SurveyFinal}`);
+              setFormResults({
+                ...formResults,
+                [sectionId]: checkedInputs,
+              });
+              setCheckedInputs({});
+              navigate(`${appRoutes.Survey}/${appRoutes.SurveyFinal}`);
             }
           }
         }
       }
     } else if (side === "prev") {
-      console.log("prev");
+      //if there are previous slides, go to the prev subsection
       if (horizontalSliderPosition < 0) {
         horizontalSliderHolder.style.left =
           horizontalSliderPosition + slideWidth + "px";
@@ -79,12 +96,33 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
         if (current.previousSibling) {
           current.previousSibling.classList.add("current");
         }
+      } else {
+        //else  if there no more prev slide got to the prev section and if no more go to the
+        // section choises page
+        if (current.getAttribute("data-index") == 0) {
+          for (let i = 0; i < form.length; i++) {
+            if (form[i] == sectionId && form[i - 1]) {
+              setCheckedInputs({});
+              navigate(`${appRoutes.Survey}/${form[i - 1]}`);
+              horizontalSliderHolder.style.left = 0;
+            } else if (form[i] == sectionId && i == 0) {
+              setCheckedInputs({});
+              setFormResults({});
+              navigate(`${appRoutes.Survey}`);
+            }
+          }
+        }
       }
     }
   }
 
-  useEffect(() => {}, [formResults]);
+  useEffect(() => {
+    setCheckedInputs(formChecks);
+  }, [formResults]);
 
+  if (!Object.keys(checkedInputs).length) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <div>SurveySectionPage</div>

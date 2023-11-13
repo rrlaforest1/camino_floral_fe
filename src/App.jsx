@@ -23,7 +23,7 @@ import "./App.css";
 function App() {
   const [form, setForm] = useState([]);
   const [formResults, setFormResults] = useState({});
-  console.log("from App formResults", formResults);
+  console.log("App formResults", formResults);
 
   return (
     <>
