@@ -30,6 +30,7 @@ function SurveyFinalPage({ form, formResults, setFormResults }) {
     event.preventDefault();
     console.log("submit");
     console.log("formResults handlesubmit", formResults);
+    console.log("AAA");
 
     // const resultExemple = {
     //   1: {
