@@ -12,8 +12,9 @@ import myApi from "../../service/service";
  */
 
 function SignInPage() {
-  const usernameInput = useRef();
+  const emailInput = useRef();
   const passwordInput = useRef();
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ function SignInPage() {
   // console.log(context)
   async function handleSubmit(event) {
     event.preventDefault();
-    const username = usernameInput.current.value;
+    const email = emailInput.current.value;
     const password = passwordInput.current.value;
     try {
       // const response = await axios.post("http://localhost:5005/auth/login", {
@@ -32,7 +33,7 @@ function SignInPage() {
       //   password,
       // });
       const response = await myApi.login({
-        username,
+        email,
         password,
       });
       console.log("success", response);
@@ -53,13 +54,8 @@ function SignInPage() {
       <div>SignInPage</div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            ref={usernameInput}
-            id="username"
-            autoComplete="off"
-          />
+          <label htmlFor="email">E-mail: </label>
+          <input type="text" ref={emailInput} id="email" autoComplete="off" />
         </div>
         <div>
           <label htmlFor="password">Password: </label>

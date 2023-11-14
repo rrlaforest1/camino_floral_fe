@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function SubscribePage() {
   const usernameInput = useRef();
+  const emailInput = useRef();
   const passwordInput = useRef();
   // const pictureInput = useRef();
   const [error, setError] = useState("");
@@ -13,6 +14,7 @@ function SubscribePage() {
   async function handleSubmit(event) {
     event.preventDefault();
     const username = usernameInput.current.value;
+    const email = emailInput.current.value;
     const password = passwordInput.current.value;
     // const picture = pictureInput.current.files[0]
 
@@ -24,6 +26,7 @@ function SubscribePage() {
     try {
       const response = await myApi.signup({
         username,
+        email,
         password,
       });
       console.log("success", response);
@@ -46,6 +49,10 @@ function SubscribePage() {
           id="username"
           autoComplete="off"
         />
+      </div>
+      <div>
+        <label htmlFor="email">E-mail: </label>
+        <input type="email" ref={emailInput} id="email" autoComplete="off" />
       </div>
       <div>
         <label htmlFor="password">Password: </label>
