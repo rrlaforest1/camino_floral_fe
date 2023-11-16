@@ -41,6 +41,11 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
       }, 3000);
     }
   }
+
+  if (!surveyAnswers.length) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <div data-edit={ediForm} className="user-page__last-survey">
