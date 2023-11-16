@@ -127,6 +127,12 @@ function SurveySectionPage({ form, formData, formResults, setFormResults }) {
 
   if (!Object.keys(checkedInputs).length) {
     return <div>Loading...</div>;
+  } else {
+    console.log(
+      "done loading",
+      Object.keys(checkedInputs).length,
+      checkedInputs
+    );
   }
   return (
     <>

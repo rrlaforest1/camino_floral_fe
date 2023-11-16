@@ -1,3 +1,11 @@
+.survey-section,
+.survey-page,
+.presurvey-page {
+    .nav-gotoform-btn {
+        display: none !important;
+    }
+}
+
 .navbar {
     width: 100%;
     display: flex;

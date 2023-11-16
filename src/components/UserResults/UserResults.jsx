@@ -16,7 +16,7 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
     const updatedUserResponse = updatedQ.response[subcatInd];
 
     try {
-      await myApi.put(`/user/${id}`, updatedUserResponse);
+      await myApi.put(`/user/answers/${id}`, updatedUserResponse);
       setSurveyAnswers(newAnswers);
     } catch (error) {
       console.log(error.response);
@@ -95,51 +95,46 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
         </div>
 
         <div>
-          {surveyAnswers.map((answer) => {
+          {surveyAnswers.map((answer, index) => {
             return (
-              <>
-                <div
-                  className={`last-survey__category cat${answer.response[0].catIndex}`}
-                >
-                  <h4>{answer.category}</h4>
-                  <div
-                    id={`cat${answer.response[0].catIndex}subcat${answer.response[0].subcatIndex}`}
-                    key={`${
-                      answer.response[0].catIndex
-                    }_${new Date().getTime()}`}
-                  >
-                    {answer.subCategory.map((subcat, subInd) => {
-                      return (
-                        <>
-                          <h5>{subcat.name}</h5>
-                          <p>
-                            <span
-                              onClick={() =>
-                                handleClick(
-                                  answer.response[subInd]._id,
-                                  answer.response[subInd].catIndex,
-                                  answer.response[subInd].subcatIndex,
-                                  0
-                                )
-                              }
-                              className="answer-edit answer-actions"
+              <div
+                key={index}
+                className={`last-survey__category cat${answer.response[0].catIndex}`}
+              >
+                <h4>{answer.category}</h4>
+                <div>
+                  {answer.subCategory.map((subcat, subInd) => {
+                    return (
+                      <React.Fragment key={subcat._id}>
+                        <h5>{subcat.name}</h5>
+                        <p>
+                          <span
+                            onClick={() =>
+                              handleClick(
+                                answer.response[subInd]._id,
+                                answer.response[subInd].catIndex,
+                                answer.response[subInd].subcatIndex,
+                                0
+                              )
+                            }
+                            className="answer-edit answer-actions"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
                             >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                />
-                              </svg>
-                            </span>
-                            {/* <span
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                              />
+                            </svg>
+                          </span>
+                          {/* <span
                                       data-id={answer.response[subInd]._id}
                                       className="answer-delete answer-actions"
                                     >
@@ -158,42 +153,42 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
                                         />
                                       </svg>
                                     </span> */}
-                            <span
-                              className={`user-page__answer ${answer.response[subInd].answers[0]}`}
+                          <span
+                            className={`user-page__answer ${answer.response[subInd].answers[0]}`}
+                          >
+                            {answer.response[subInd].answers[0] ? "Si" : "No"}
+                          </span>
+                          {subcat.questions[0]}
+                        </p>
+                        <p>
+                          <span
+                            onClick={() =>
+                              handleClick(
+                                answer.response[subInd]._id,
+                                answer.response[subInd].catIndex,
+                                answer.response[subInd].subcatIndex,
+                                1
+                              )
+                            }
+                            data-id={answer.response[subInd]._id}
+                            className="answer-edit answer-actions"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
                             >
-                              {answer.response[subInd].answers[0] ? "Si" : "No"}
-                            </span>
-                            {subcat.questions[0]}
-                          </p>
-                          <p>
-                            <span
-                              onClick={() =>
-                                handleClick(
-                                  answer.response[subInd]._id,
-                                  answer.response[subInd].catIndex,
-                                  answer.response[subInd].subcatIndex,
-                                  1
-                                )
-                              }
-                              data-id={answer.response[subInd]._id}
-                              className="answer-edit answer-actions"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                />
-                              </svg>
-                            </span>
-                            {/* <span
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                              />
+                            </svg>
+                          </span>
+                          {/* <span
                                       data-id={answer.response[subInd]._id}
                                       className="answer-delete answer-actions"
                                     >
@@ -212,19 +207,18 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
                                         />
                                       </svg>
                                     </span> */}
-                            <span
-                              className={`user-page__answer ${answer.response[subInd].answers[1]}`}
-                            >
-                              {answer.response[subInd].answers[1] ? "Si" : "No"}
-                            </span>
-                            {subcat.questions[1]}
-                          </p>
-                        </>
-                      );
-                    })}
-                  </div>
+                          <span
+                            className={`user-page__answer ${answer.response[subInd].answers[1]}`}
+                          >
+                            {answer.response[subInd].answers[1] ? "Si" : "No"}
+                          </span>
+                          {subcat.questions[1]}
+                        </p>
+                      </React.Fragment>
+                    );
+                  })}
                 </div>
-              </>
+              </div>
             );
           })}
         </div>

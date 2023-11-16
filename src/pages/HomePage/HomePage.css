@@ -51,7 +51,8 @@
 
         .hp-section-2 {
             background-color: var(--light-red);
-            background-image: url("./images/flowers.jpeg");
+            background-image: url("./images/wild-flowers.jpg");
+            background-position: center;
             background-size: cover;
             color: black;
 

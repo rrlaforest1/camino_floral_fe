@@ -12,13 +12,15 @@ import SurveySectionPage from "./pages/SurveySectionPage/SurveySectionPage";
 import SurveyFinalPage from "./pages/SurveyFinalPage/SurveyFinalPage";
 import AfterSurveyPage from "./pages/AfterSurveyPage/AfterSurveyPage";
 
-// import LoggedOutUser from "./navigation/LoggedOutUser";
+import LoggedOutUser from "./navigation/LoggedOutUser";
 import LoggedInUser from "./navigation/LoggedInUser";
 import UserPage from "./pages/UserPage/UserPage";
+import EditUserInfo from "./pages/EditUserInfo/EditUserInfo";
 import AdminRoute from "./navigation/AdminRoute";
+import AdminPage from "./pages/AdminPage/AdminPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 import Layout from "./layouts/Layout";
-// import ConversationLayout from "./layouts/ConversationLayout"
 
 import SubscribePage from "./pages/SubscribePage/SubscribePage";
 import SignInPage from "./pages/SignInPage/SignInPage";
@@ -81,18 +83,19 @@ function App() {
             {/* The conversations routes should be accessible only if a user */}
             {/* is Logged in */}
             <Route element={<LoggedInUser />}>
-              <Route path="/user" element={<UserPage />} />
+              <Route path={appRoutes.User} element={<UserPage />} />
+              <Route path={appRoutes.EditUser} element={<EditUserInfo />} />
             </Route>
             {/* Login / Signup routes should be accessible to Logged out users */}
 
-            {/* <Route element={<LoggedOutUser />}> */}
-            <Route path="/subscribe" element={<SubscribePage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            {/* </Route> */}
-            <Route element={<AdminRoute />}>
-              <Route path="/secret" element={<h1>Shhhhhh.....</h1>} />
+            <Route element={<LoggedOutUser />}>
+              <Route path={appRoutes.Subscribe} element={<SubscribePage />} />
+              <Route path={appRoutes.SignIn} element={<SignInPage />} />
             </Route>
-            <Route path={appRoutes.NotFound} element={<h2>Error page</h2>} />
+            <Route element={<AdminRoute />}>
+              <Route path="/adminpage" element={<AdminPage />} />
+            </Route>
+            <Route path={appRoutes.NotFound} element={<ErrorPage />} />
           </Route>
         </Routes>
       </div>

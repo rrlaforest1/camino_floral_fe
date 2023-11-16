@@ -31,7 +31,7 @@ body.survey-page .navbar .nav-gotoform-btn {
         .survey-page__form {
             max-width: 70%;
             margin: 0 auto;
-            background-color: white;
+            /* background-color: white; */
             padding: 3rem;
             display: flex;
             flex-direction: column;

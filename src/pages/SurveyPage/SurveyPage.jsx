@@ -86,10 +86,10 @@ function SurveyPage({ setForm, setFormData }) {
             vuelva mas vulnerable a las enfermedades.
           </p>
 
-          <h2>
+          {/* <h2>
             Pero primero, selecciona cual de las siguiente secciones te está
             causando más problemas actualmente (puedes selecionar más de una):
-          </h2>
+          </h2> */}
 
           <form className="survey-page__form" onSubmit={handleSubmit}>
             {/* {form.map((section, i) => {

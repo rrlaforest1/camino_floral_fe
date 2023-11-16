@@ -7,7 +7,6 @@ import "./Navbar.css";
 import { useAuth } from "./../../context/AuthContext";
 
 function Navbar() {
-  console.log("NAVBAR");
   const { isLoggedIn, authenticateUser, user } = useAuth();
 
   const handleLogout = () => {
@@ -19,7 +18,6 @@ function Navbar() {
 
   const userName = user ? user.username : "";
 
-  console.log(user);
   return (
     <nav className="navbar">
       <div>
@@ -63,7 +61,7 @@ function Navbar() {
           <>
             <li>
               <NavLink className="nav-gotoform-btn" to={appRoutes.Survey}>
-                Obtern tratamiento personalizado
+                Obtener un tratamiento personalizado
               </NavLink>
             </li>
 

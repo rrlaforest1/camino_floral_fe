@@ -1,0 +1,30 @@
+.error-page {
+    .error-page__wrapper {
+        max-width: 1024px;
+        margin: 5rem auto;
+        padding: 3rem;
+        background-color: var(--light-yellow);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+
+        & h3 {
+            font-family: "Crimson", "Times New Roman", serif;
+            font-size: 3rem;
+        }
+
+        & a {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--dark-gray);
+            color: white;
+            display: inline-block;
+            margin: auto;
+            font-family: "Crimson";
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+    }
+}

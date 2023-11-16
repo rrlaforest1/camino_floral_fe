@@ -72,9 +72,7 @@ function HomePage() {
                     <div>
                       <img src="/images/1.png" alt="dropper" />
                     </div>
-                    <h4>
-                      <h4>Rescate (Rescue)</h4>{" "}
-                    </h4>{" "}
+                    <h4>Rescate (Rescue)</h4>{" "}
                     <div className="home-page__market-actions">
                       <p className="home-page__market-price">14 €</p>
                       <div className="home-page__market-basket">

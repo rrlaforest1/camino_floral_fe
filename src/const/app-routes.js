@@ -6,5 +6,9 @@ export const appRoutes = {
   Survey: "/survey",
   SurveyFinal: "final",
   AfterSurvey: "aftersurvey",
+  User: "/user",
+  EditUser: "/edituser",
+  Subscribe: "/subscribe",
+  SignIn: "/signin",
   NotFound: "*",
 };

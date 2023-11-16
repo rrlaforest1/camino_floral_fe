@@ -35,6 +35,18 @@
             font-family: "Crimson", "Times New Roman", serif;
             padding: 0.5rem;
         }
+
+        .infos-edit-btn {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--dark-gray);
+
+            & svg {
+                height: 2rem;
+
+            }
+        }
     }
 
     .user-page__infos-surveys {
