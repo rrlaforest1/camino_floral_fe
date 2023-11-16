@@ -1,19 +1,67 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.ttf') format('TrueType');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Crimson';
+  src: url('/fonts/CrimsonText-Regular.ttf') format('TrueType');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand-Light.ttf') format('TrueType');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand-Regular.ttf') format('TrueType');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand-Medium.ttf') format('TrueType');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../fonts/Quicksand-Bold.ttf') format('TrueType');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --light-gray: #E6E6E6;
   --light-red: #FFC5C5;
   --light-orange: #FFC581;
-  --light-yellow: #FFF27B;
+  --light-yellow: #FFF9BE;
   --light-green: #AAEEAD;
-  --light-blue: #7FFAF2;
-  --light-indigo: #7FB0FA;
-  --light-violet: #E3A8FF;
+  --light-blue: #B5FFFA;
+  --light-indigo: #B3D1FF;
+  --light-violet: #F2D5FF;
 
   --dark-gray: #222;
   --dark-red: #FF9F9F;
   --dark-orange: #FFA800;
   --dark-yellow: #FFF27B;
   --dark-green: #7CBA66;
-  --dark-blue: #7FFAF2;
+  --dark-blue: #5AEDE4;
   --dark-indigo: #7FB0FA;
   --dark-violet: #E3A8FF;
 }
@@ -36,5 +84,5 @@ a {
 
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Quicksand", Arial, Helvetica, sans-serif;
 }

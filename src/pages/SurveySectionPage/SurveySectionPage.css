@@ -1,18 +1,203 @@
+.survey-section-0 {
+    background-color: var(--light-red);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-red) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-red) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-red) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-red) !important;
+        }
+    }
+}
+
+.survey-section-1 {
+    background-color: var(--light-orange);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-orange) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-orange) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-orange) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-orange) !important;
+        }
+    }
+}
+
+.survey-section-2 {
+    background-color: var(--light-yellow);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-yellow) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-yellow) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-yellow) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-yellow) !important;
+        }
+    }
+}
+
+.survey-section-3 {
+    background-color: var(--light-green);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-green) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-green) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-green) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-green) !important;
+        }
+    }
+}
+
+.survey-section-4 {
+    background-color: var(--light-blue);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-blue) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-blue) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-blue) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-blue) !important;
+        }
+    }
+}
+
+.survey-section-5 {
+    background-color: var(--light-indigo);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-indigo) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-indigo) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-indigo) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-indigo) !important;
+        }
+    }
+}
+
+.survey-section-6 {
+    background-color: var(--light-violet);
+
+    .form__subsection {
+
+        & h2 {
+            background-color: var(--dark-violet) !important;
+        }
+
+        & label {
+            &:hover input~.checkmark {
+                background-color: var(--light-violet) !important;
+            }
+
+            & input:checked~.checkmark {
+                background-color: var(--dark-violet) !important;
+            }
+        }
+
+        .checkmark {
+            border-color: var(--dark-violet) !important;
+        }
+    }
+}
+
 .form-component {
     position: relative;
 
     .form__section-top {
-        max-width: 20rem;
+        max-width: 22rem;
         margin: 2rem auto;
+        background-color: white;
+        padding: 3rem;
+        box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.2);
 
 
         & h3 {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        & span {
+            font-weight: 900;
         }
     }
 
     .form__section-slider {
         position: relative;
+
     }
 
     .form__subsection-slider-nav {
@@ -20,10 +205,20 @@
         justify-content: space-between;
         position: absolute;
         width: 100%;
-        top: 50%;
+        top: 40%;
 
         & div {
             cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            padding: 1rem;
+            color: var(--dark-gray);
+            font-family: "Crimson", "Times";
+
+            & svg {
+                display: inline-block;
+                width: 1.7rem;
+            }
         }
 
     }
@@ -32,8 +227,8 @@
         width: 70%;
         margin: 0 auto;
         position: relative;
-        border-left: 1px solid black;
-        border-right: 1px solid black;
+        /* border-left: 1px solid black;
+        border-right: 1px solid black; */
         height: 300px;
         overflow: hidden;
 
@@ -55,18 +250,18 @@
                 font-size: 1.2rem;
                 padding: 0.3rem;
                 text-align: center;
-                background-color: red;
-                color: white;
+                color: var(--dark-gray);
                 border-radius: 30px 30px 0 0;
+                font-weight: 900;
             }
 
             .form_subsection-questions {
                 min-height: 200px;
-                padding: 2rem;
+                padding: 3rem;
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
-                background-color: lightgray;
+                background-color: white;
 
                 & label {
                     display: flex;
@@ -105,6 +300,62 @@
                     margin-right: 1rem;
                     border: 3px solid;
                 }
+            }
+        }
+    }
+
+
+    .progress {
+        margin: 3rem auto;
+
+        & ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & li {
+                width: 10%;
+                height: 10px;
+                transition: all 0.5s linear;
+
+
+                &[data-state="current"] {
+                    height: 13px;
+                    width: 12%;
+                }
+
+                &[data-state="passed"] {
+                    opacity: 0.3;
+                }
+
+                &[data-index="0"] {
+                    background-color: var(--dark-red);
+                }
+
+                &[data-index="1"] {
+                    background-color: var(--dark-orange);
+                }
+
+                &[data-index="2"] {
+                    background-color: var(--dark-yellow);
+                }
+
+                &[data-index="3"] {
+                    background-color: var(--dark-green);
+                }
+
+                &[data-index="4"] {
+                    background-color: var(--dark-blue);
+                }
+
+                &[data-index="5"] {
+                    background-color: var(--dark-indigo);
+                }
+
+                &[data-index="6"] {
+                    background-color: var(--dark-violet);
+                }
+
             }
         }
     }

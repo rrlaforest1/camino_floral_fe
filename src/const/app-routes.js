@@ -5,5 +5,6 @@ export const appRoutes = {
   PreSurvey: "pre",
   Survey: "/survey",
   SurveyFinal: "final",
+  AfterSurvey: "aftersurvey",
   NotFound: "*",
 };

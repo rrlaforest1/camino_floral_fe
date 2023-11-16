@@ -3,13 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./../../context/AuthContext";
 import myApi from "../../service/service";
-// import { AuthContext } from "./../../context/AuthContext.jsx";
-
-/**
- * To have access to the values store in a context we neee:
- * - the Context (AuthContext here)
- * - useContext to well.. Use the context.?
- */
+import "./SignInPage.css";
 
 function SignInPage() {
   const emailInput = useRef();
@@ -20,24 +14,16 @@ function SignInPage() {
 
   const { authenticateUser } = useAuth();
 
-  // const something = useContext(AuthContext)
-
-  // console.log(context)
   async function handleSubmit(event) {
     event.preventDefault();
     const email = emailInput.current.value;
     const password = passwordInput.current.value;
     try {
-      // const response = await axios.post("http://localhost:5005/auth/login", {
-      //   username,
-      //   password,
-      // });
       const response = await myApi.login({
         email,
         password,
       });
-      console.log("success", response);
-      console.log("success", response.data);
+
       localStorage.setItem("authToken", response.data.token);
       await authenticateUser();
       navigate("/");
@@ -51,19 +37,28 @@ function SignInPage() {
   }
   return (
     <>
-      <div>SignInPage</div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">E-mail: </label>
-          <input type="text" ref={emailInput} id="email" autoComplete="off" />
+      <div className="signin-page">
+        <div className="signin-page__wrapper">
+          <h2>Conectarse</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="email">E-mail: </label>
+              <input
+                type="text"
+                ref={emailInput}
+                id="email"
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Contraseña: </label>
+              <input type="password" ref={passwordInput} id="username" />
+            </div>
+            <button>Entrar</button>
+            <p className="error">{error}</p>
+          </form>
         </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input type="password" ref={passwordInput} id="username" />
-        </div>
-        <button>Login</button>
-        <p className="error">{error}</p>
-      </form>
+      </div>
     </>
   );
 }

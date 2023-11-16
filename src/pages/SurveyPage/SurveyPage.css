@@ -150,6 +150,7 @@ body.survey-page .navbar .nav-gotoform-btn {
             padding: 0.5rem;
             border-radius: 30px;
             cursor: pointer;
+            font-family: "Crimson";
         }
     }
 }

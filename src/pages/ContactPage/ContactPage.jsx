@@ -8,7 +8,12 @@ function ContactPage() {
       document.body.classList.remove("contact-page");
     };
   }, []);
-  return <div>ContactPage</div>;
+  return (
+    <>
+      <div>ContactPage</div>
+      <Email />
+    </>
+  );
 }
 
 export default ContactPage;

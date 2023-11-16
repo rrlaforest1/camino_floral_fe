@@ -5,7 +5,7 @@ import { appRoutes } from "../../const/app-routes";
 
 import "./SurveySectionPage.css";
 
-function SurveySectionPage({ form, formResults, setFormResults }) {
+function SurveySectionPage({ form, formData, formResults, setFormResults }) {
   const { sectionId } = useParams();
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
     return () => {
       document.body.classList.remove(`survey-section-${sectionId}`);
     };
-  }, []);
+  }, [sectionId]);
 
   let formChecks = {};
   if (formResults[sectionId]) {
@@ -22,8 +22,8 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
     formChecks = formResults[sectionId];
   } else {
     //else the fill set it all to false
-    form_es[sectionId].subsections.forEach((subsection) => {
-      formChecks[subsection.index] = [false, false];
+    formData.categories[sectionId].subsections.forEach((subsection, i) => {
+      formChecks[i] = [false, false];
     });
   }
 
@@ -41,7 +41,7 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
    * @param {String} side
    */
   function handleSlider(side, event) {
-    const slidesQty = form_es[sectionId].subsections.length;
+    const slidesQty = formData.categories[sectionId].subsections.length;
     const horizontalSliderHolder = event.target
       .closest(".form__sections")
       .querySelector(".form__subsections-slider");
@@ -102,6 +102,10 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
         if (current.getAttribute("data-index") == 0) {
           for (let i = 0; i < form.length; i++) {
             if (form[i] == sectionId && form[i - 1]) {
+              setFormResults({
+                ...formResults,
+                [sectionId]: checkedInputs,
+              });
               setCheckedInputs({});
               navigate(`${appRoutes.Survey}/${form[i - 1]}`);
               horizontalSliderHolder.style.left = 0;
@@ -118,6 +122,7 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
 
   useEffect(() => {
     setCheckedInputs(formChecks);
+    localStorage.setItem("surveyResults", JSON.stringify(formResults));
   }, [formResults]);
 
   if (!Object.keys(checkedInputs).length) {
@@ -125,62 +130,113 @@ function SurveySectionPage({ form, formResults, setFormResults }) {
   }
   return (
     <>
-      <div>SurveySectionPage</div>
-
       <div className="form-component">
         <form>
           <div className="form__sections">
             <div className="form__section-top">
-              <h3 className="form__section-title">{form_es[sectionId].name}</h3>
+              <h3 className="form__section-title">
+                {formData.categories[sectionId].name}
+              </h3>
               <p>
                 Selecciona todas las opciones que más se adapten a tu realidad
                 actual si ninguna se no pasa nada :) no selecciona ningun.
-                Cuando estés listo presiona Siguiente{" "}
+                Cuando estés listo presiona <span>Siguiente</span>{" "}
               </p>
             </div>
             <div className="form__section-subsections">
               <div className="form__subsections-slider">
-                {form_es[sectionId].subsections.map((subsection, ind) => {
-                  return (
-                    <div
-                      key={`${sectionId}section${ind}`}
-                      className={`form__subsection ${
-                        ind == "0" ? "current" : ""
-                      }`}
-                      data-index={ind}
-                    >
-                      <h2>{subsection.name}</h2>
-                      <div className="form_subsection-questions">
-                        {subsection.questions.map((question, i) => {
-                          return (
-                            <label
-                              key={`${sectionId}section${ind}-question${i}`}
-                              htmlFor={`section${sectionId}subsection${ind}-question${i}`}
-                            >
-                              <input
-                                type="checkbox"
-                                value={`${ind}_${i}`}
-                                id={`section${sectionId}subsection${ind}-question${i}`}
-                                checked={checkedInputs[ind + 1][i]}
-                                onChange={() => handleChange(ind + 1, i)}
-                              />
-                              <span className="checkmark"></span>
-                              {question}
-                            </label>
-                          );
-                        })}
+                {formData.categories[sectionId].subsections.map(
+                  (subsection, ind) => {
+                    return (
+                      <div
+                        key={`${sectionId}section${ind}`}
+                        className={`form__subsection ${
+                          ind == "0" ? "current" : ""
+                        }`}
+                        data-index={ind}
+                      >
+                        <h2>{subsection.name}</h2>
+                        <div className="form_subsection-questions">
+                          {subsection.questions.map((question, i) => {
+                            return (
+                              <label
+                                key={`${sectionId}section${ind}-question${i}`}
+                                htmlFor={`section${sectionId}subsection${ind}-question${i}`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  value={`${ind}_${i}`}
+                                  id={`section${sectionId}subsection${ind}-question${i}`}
+                                  checked={checkedInputs[ind][i]}
+                                  onChange={() => handleChange(ind, i)}
+                                />
+                                <span className="checkmark"></span>
+                                {question}
+                              </label>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  }
+                )}
               </div>
             </div>
             <div className="form__subsection-slider-nav">
-              <div onClick={() => handleSlider("prev", event)}>Anterior</div>
-              <div onClick={() => handleSlider("next", event)}>Siguiente</div>
+              <div onClick={() => handleSlider("prev", event)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span>Anterior</span>
+              </div>
+              <div onClick={() => handleSlider("next", event)}>
+                <span>Siguiente</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </form>
+
+        <div className="progress">
+          <ul>
+            {form.map((section, index) => {
+              return (
+                <li
+                  key={`progress-section${index}`}
+                  className="progress-item"
+                  data-index={section}
+                  data-state={
+                    Number(section) < Number(sectionId)
+                      ? "passed"
+                      : Number(section) == Number(sectionId)
+                      ? "current"
+                      : ""
+                  }
+                ></li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </>
   );

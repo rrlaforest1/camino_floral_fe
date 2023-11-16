@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import myApi from "./../../service/service";
 import { useNavigate } from "react-router-dom";
 
+import "./SubscribePage.css";
+
 function SubscribePage() {
   const usernameInput = useRef();
   const emailInput = useRef();
@@ -40,31 +42,43 @@ function SubscribePage() {
     }
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text"
-          ref={usernameInput}
-          id="username"
-          autoComplete="off"
-        />
-      </div>
-      <div>
-        <label htmlFor="email">E-mail: </label>
-        <input type="email" ref={emailInput} id="email" autoComplete="off" />
-      </div>
-      <div>
-        <label htmlFor="password">Password: </label>
-        <input type="password" ref={passwordInput} id="username" />
-      </div>
-      {/* <div>
+    <>
+      <div className="subscribe-page">
+        <div className="subscribe-page__wrapper">
+          <h2>Suscribirse</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="username">Nombre de usuario: </label>
+              <input
+                type="text"
+                ref={usernameInput}
+                id="username"
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <label htmlFor="email">E-mail: </label>
+              <input
+                type="email"
+                ref={emailInput}
+                id="email"
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Contraseña: </label>
+              <input type="password" ref={passwordInput} id="username" />
+            </div>
+            {/* <div>
         <label htmlFor="picture">Picture</label>
         <input ref={pictureInput} type="file" name="" id="picture" />
       </div> */}
-      <button>Signup</button>
-      <p className="error">{error}</p>
-    </form>
+            <button>Unirme</button>
+            <p className="error">{error}</p>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

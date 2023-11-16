@@ -5,13 +5,17 @@ import { appRoutes } from "./const/app-routes";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
+
 import PreSurveyPage from "./pages/PreSurveyPage/PreSurveyPage";
 import SurveyPage from "./pages/SurveyPage/SurveyPage";
 import SurveySectionPage from "./pages/SurveySectionPage/SurveySectionPage";
 import SurveyFinalPage from "./pages/SurveyFinalPage/SurveyFinalPage";
+import AfterSurveyPage from "./pages/AfterSurveyPage/AfterSurveyPage";
+
 // import LoggedOutUser from "./navigation/LoggedOutUser";
-// import LoggedInUser from "./navigation/LoggedInUser";
-// import AdminRoute from "./navigation/AdminRoute";
+import LoggedInUser from "./navigation/LoggedInUser";
+import UserPage from "./pages/UserPage/UserPage";
+import AdminRoute from "./navigation/AdminRoute";
 
 import Layout from "./layouts/Layout";
 // import ConversationLayout from "./layouts/ConversationLayout"
@@ -22,6 +26,7 @@ import "./App.css";
 
 function App() {
   const [form, setForm] = useState([]);
+  const [formData, setFormData] = useState([]);
   const [formResults, setFormResults] = useState({});
   console.log("App formResults", formResults);
 
@@ -35,7 +40,12 @@ function App() {
             <Route path={appRoutes.Contact} element={<ContactPage />} />
 
             <Route path={appRoutes.Survey}>
-              <Route index element={<SurveyPage setForm={setForm} />} />
+              <Route
+                index
+                element={
+                  <SurveyPage setFormData={setFormData} setForm={setForm} />
+                }
+              />
               <Route
                 path={appRoutes.PreSurvey}
                 element={<PreSurveyPage form={form} />}
@@ -45,6 +55,7 @@ function App() {
                 element={
                   <SurveySectionPage
                     form={form}
+                    formData={formData}
                     formResults={formResults}
                     setFormResults={setFormResults}
                   />
@@ -53,26 +64,34 @@ function App() {
               <Route
                 path={appRoutes.SurveyFinal}
                 element={
-                  <SurveyFinalPage form={form} formResults={formResults} />
+                  <SurveyFinalPage
+                    form={form}
+                    formData={formData}
+                    formResults={formResults}
+                  />
+                }
+              />
+              <Route
+                path={appRoutes.AfterSurvey}
+                element={
+                  <AfterSurveyPage form={form} formResults={formResults} />
                 }
               />
             </Route>
             {/* The conversations routes should be accessible only if a user */}
             {/* is Logged in */}
-            {/* <Route element={<LoggedInUser />}>
-              <Route path="/conversations" element={<ConversationLayout />}>
-                <Route path=":id" element={<OneConversationPage />} />
-              </Route>
-            </Route> */}
+            <Route element={<LoggedInUser />}>
+              <Route path="/user" element={<UserPage />} />
+            </Route>
             {/* Login / Signup routes should be accessible to Logged out users */}
 
             {/* <Route element={<LoggedOutUser />}> */}
             <Route path="/subscribe" element={<SubscribePage />} />
             <Route path="/signin" element={<SignInPage />} />
             {/* </Route> */}
-            {/* <Route element={<AdminRoute />}>
+            <Route element={<AdminRoute />}>
               <Route path="/secret" element={<h1>Shhhhhh.....</h1>} />
-            </Route> */}
+            </Route>
             <Route path={appRoutes.NotFound} element={<h2>Error page</h2>} />
           </Route>
         </Routes>

@@ -12,20 +12,20 @@ function Instructions() {
         mejores resultados.
       </p>
 
-      <h2>Instrucciones</h2>
+      <h2>Instrucciones:</h2>
 
       <ol>
         <li>
-          1. Marque la frases que mejor describa cómo se siente y que mas lo(a)
-          afecten de cada uno los 38 grupos siguientes
+          <span>1.</span>Marque la frases que mejor describa cómo se siente y
+          que mas lo(a) afecten de cada uno los 38 grupos siguientes
         </li>
         <li>
-          2. Si en algún grupo ninguna frase le identifica siga con la
-          siguiente.
+          <span>2.</span>Si en algún grupo ninguna frase le identifica siga con
+          la siguiente.
         </li>
         <li>
-          3. Sea sincero(a) pero no demasiado severo(a) o exigente consigo
-          mismo(a) al evaluarse.
+          <span>3.</span>Sea sincero(a) pero no demasiado severo(a) o exigente
+          consigo mismo(a) al evaluarse.
         </li>
       </ol>
 

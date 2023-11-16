@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import Email from "../../components/Emails/surveyResults";
 
 function HomePage() {
   useEffect(() => {
@@ -9,7 +10,11 @@ function HomePage() {
     };
   }, []);
 
-  return <div>HomePage</div>;
+  return (
+    <>
+      <div>HomePage</div>
+    </>
+  );
 }
 
 export default HomePage;

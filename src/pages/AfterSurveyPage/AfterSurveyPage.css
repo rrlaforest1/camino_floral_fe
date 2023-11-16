@@ -1,0 +1,23 @@
+.after-survey-page {
+    .after-survey-page__wrapper {
+        max-width: 1024px;
+        margin: 5rem auto;
+        padding: 3rem;
+        background-color: var(--light-blue);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    & a {
+
+        padding: 1rem 1.5rem;
+        background-color: var(--dark-gray);
+        color: white;
+        display: inline-block;
+        margin: auto;
+        font-family: "Crimson";
+    }
+}

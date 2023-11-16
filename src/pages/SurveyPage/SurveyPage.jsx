@@ -1,19 +1,29 @@
-import React from "react";
 import { form_es } from "../../const/forms-data";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { appRoutes } from "../../const/app-routes";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import myApi from "./../../service/service";
 
 import "./SurveyPage.css";
 
-function SurveyPage({ setForm }) {
+function SurveyPage({ setForm, setFormData }) {
   const [checkedInputs, setCheckedInputs] = useState(
     new Array(form_es.length).fill(false)
   );
 
   const navigate = useNavigate();
 
-  const form = form_es;
+  async function fetchForm() {
+    try {
+      const formFromDB = await myApi.getFormES();
+      setFormData(formFromDB[0]);
+    } catch (error) {
+      setError(error.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+  }
 
   function handleChange(position) {
     const updatedCheckedInputs = checkedInputs.map((inputCheck, index) =>
@@ -25,15 +35,17 @@ function SurveyPage({ setForm }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    let selectedSections = checkedInputs
-      .map((item, index) => {
-        if (item) {
-          return index;
-        }
-      })
-      .filter((element) => element !== undefined);
+    // let selectedSections = checkedInputs
+    //   .map((item, index) => {
+    //     if (item) {
+    //       return index;
+    //     }
+    //   })
+    //   .filter((element) => element !== undefined);
 
-    console.log("selectedSections", selectedSections);
+    // console.log("selectedSections", selectedSections);
+
+    let selectedSections = [3, 4];
 
     setForm(selectedSections);
 
@@ -45,6 +57,10 @@ function SurveyPage({ setForm }) {
     return () => {
       document.body.classList.remove("survey-page");
     };
+  }, []);
+
+  useEffect(() => {
+    fetchForm();
   }, []);
 
   return (
@@ -76,7 +92,7 @@ function SurveyPage({ setForm }) {
           </h2>
 
           <form className="survey-page__form" onSubmit={handleSubmit}>
-            {form.map((section, i) => {
+            {/* {form.map((section, i) => {
               return (
                 <div key={`preform-section${i}`}>
                   <label htmlFor={`section${i + 1}`}>
@@ -92,7 +108,7 @@ function SurveyPage({ setForm }) {
                   </label>
                 </div>
               );
-            })}
+            })} */}
             <button className="survey-btn__form">Confirmar</button>
           </form>
         </div>

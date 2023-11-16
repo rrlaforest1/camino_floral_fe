@@ -7,6 +7,48 @@ body.presurvey-page .navbar .nav-gotoform-btn {
     .presurvey-page__wrapper {
         max-width: 1024px;
         margin: 5rem auto;
+        padding: 3rem;
+        background-color: var(--light-orange);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+
+        & h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: "Quicksand";
+            font-size: 2rem;
+        }
+
+        & p {
+            margin-bottom: 3rem;
+        }
+
+        & ol {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-left: 10px;
+            margin-bottom: 3rem;
+
+            & li {
+
+                & span {
+                    position: relative;
+                    left: -10px;
+                    font-weight: 900;
+                }
+            }
+        }
+
+        & a {
+            padding: 1rem 1.5rem;
+            background-color: var(--dark-gray);
+            color: white;
+            display: inline-block;
+            margin: auto;
+            font-family: "Crimson";
+        }
 
     }
 }

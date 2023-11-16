@@ -26,7 +26,7 @@ function PreSurveyPage({ form }) {
           <Instructions />
           {/* )} */}
 
-          <Link to={`${appRoutes.Survey}/${form[0]}`}>VAMOS!!!</Link>
+          <Link to={`${appRoutes.Survey}/${form[0]}`}>Comencemos</Link>
         </div>
       </div>
     </>

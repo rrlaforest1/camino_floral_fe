@@ -8,7 +8,15 @@ myApi.getUserInfos = function () {
   return myApi
     .get("/auth/verify")
     .then((response) => {
-      // console.log(response)
+      return response.data;
+    })
+    .catch((error) => console.log(error));
+};
+
+myApi.getFormES = function () {
+  return myApi
+    .get("/survey")
+    .then((response) => {
       return response.data;
     })
     .catch((error) => console.log(error));
@@ -29,9 +37,15 @@ myApi.login = function (userInfos) {
 };
 
 myApi.formResults = function (formAnswers) {
-  console.log("formAnswers", formAnswers);
   return myApi
     .post("/answers", formAnswers)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+myApi.extraInfo = function (info) {
+  return myApi
+    .post("/answers/extrainfo", info)
     .then((response) => response)
     .catch((error) => error);
 };
@@ -42,5 +56,14 @@ myApi.interceptors.request.use((request) => {
   request.headers.Authorization = `Bearer ${token}`;
   return request;
 });
+
+myApi.getSurveyAnswers = function () {
+  return myApi
+    .get("/user")
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => console.log(error));
+};
 
 export default myApi;
