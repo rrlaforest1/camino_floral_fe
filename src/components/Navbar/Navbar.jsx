@@ -26,7 +26,7 @@ function Navbar() {
         <ul>
           <li>
             <NavLink className="nav-logo" to={appRoutes.Home}>
-              <img src="/images/flor-geometria.png" alt="Logo" />
+              <img src="/images/flower_white.png" alt="Logo" />
               <span>Camino Floral</span>
             </NavLink>
           </li>

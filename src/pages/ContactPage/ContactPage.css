@@ -1,0 +1,83 @@
+.contact-page {
+    .contat-page__wrapper {
+        max-width: 1024px;
+        margin: 5rem auto;
+        padding: 3rem;
+        background-color: var(--light-orange);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+
+        & h3 {
+            font-family: "Crimson", "Times New Roman", serif;
+            font-size: 3rem;
+        }
+
+        & form {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 2rem;
+            padding-bottom: 3rem;
+            /* width: 50%; */
+            min-width: 350px;
+            position: relative;
+        }
+
+        & label {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        & input {
+            border-radius: 3px;
+            border: 1px solid var(--light-gray);
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+
+            &:focus {
+                border: 2px solid var(--light-gray);
+                overflow: hidden;
+                outline: none;
+            }
+        }
+
+        & textarea {
+            border-radius: 3px;
+            border: 1px solid var(--light-gray);
+            width: 100%;
+            resize: none;
+            padding: 0.2rem;
+            height: 7rem;
+
+            &:focus {
+                border: 2px solid var(--light-gray);
+                overflow: hidden;
+                outline: none;
+            }
+        }
+
+        & button {
+
+            padding: 0.5rem 1.5rem;
+            background-color: var(--dark-gray);
+            color: white;
+            display: inline-block;
+            margin: auto;
+            font-family: "Crimson";
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+
+        .contact-page__sent-message {
+            position: absolute;
+            bottom: 10px;
+        }
+    }
+
+}

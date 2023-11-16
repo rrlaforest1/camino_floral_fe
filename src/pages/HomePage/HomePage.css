@@ -1,0 +1,189 @@
+.home-page {
+
+    .home-page__wrapper {
+
+        .home-page__sec {
+            min-height: 400px;
+            box-shadow: 0 -5px 6px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 3rem;
+
+        }
+
+        .home-page__section-wrapper {
+            max-width: 1024px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hp-section-1 {
+            background-color: transparent;
+            text-align: center;
+
+            & p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+
+                & span {
+                    border-bottom: 1px solid var(--dark-gray);
+                }
+            }
+
+            .home-page__to-form {
+                padding: 0.5rem 3rem;
+                background-color: var(--dark-indigo);
+                color: var(--dark-gray);
+                display: inline-block;
+                margin: auto;
+                font-family: "Crimson";
+                font-size: 1.3rem;
+                margin-top: 2rem;
+                cursor: pointer;
+                border-radius: 30px;
+
+                &:hover {
+                    background-color: var(--light-indigo);
+                }
+            }
+        }
+
+        .hp-section-2 {
+            background-color: var(--light-red);
+            background-image: url("./images/flowers.jpeg");
+            background-size: cover;
+            color: black;
+
+            &>div {
+                background-color: rgba(255, 255, 255, 0.6);
+                padding: 2rem;
+            }
+
+            & h3 {
+                font-family: "Crimson", "Times New Roman", serif;
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            & p {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .hp-section-3 {
+            background-color: transparent;
+
+
+            & h3 {
+                font-family: "Crimson", "Times New Roman", serif;
+                font-size: 2rem;
+                margin: 2rem 0;
+
+
+            }
+
+            .home-page__market {
+                display: flex;
+                margin-bottom: 3rem;
+                justify-content: space-between;
+
+                padding: 0.5rem;
+
+                & li {
+                    width: calc(20% - 1.5rem);
+                }
+            }
+
+            & h4 {
+                font-family: "Crimson", "Times New Roman", serif;
+
+                & span {
+                    display: block;
+                }
+            }
+
+            & img {
+                width: 100%;
+                border: 1px solid var(--dark-gray);
+                margin: 0.3rem 0;
+                box-shadow: 5px 0px 6px 0 rgba(0, 0, 0, 0.1);
+            }
+
+            .home-page__market-actions {
+                /* display: flex;
+                align-items: center;
+                justify-content: space-around;
+                flex-direction: row; */
+            }
+
+            .home-page__market-basket {
+                cursor: pointer;
+                color: white;
+                background-color: var(--dark-gray);
+                padding: 0.5rem;
+                font-size: 0.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0.3rem 0;
+
+                & svg {
+                    margin-left: 0.5rem;
+                    height: 1rem;
+                }
+            }
+
+            .home-page__market-price {
+                font-weight: 600;
+            }
+
+            .home-page__market-desc {
+                font-size: 1rem;
+                margin-top: 0.5rem;
+                color: #999;
+            }
+
+        }
+
+        .hp-section-4 {
+            background-color: var(--light-red);
+
+            .home-page__section-wrapper {
+                &>div {
+                    display: flex;
+                    padding: 3rem;
+                    justify-content: space-evenly;
+                }
+
+                .home-page__intro-text {
+                    padding: 2rem;
+                    background-color: white;
+                    border-radius: 0 30px 30px 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                & img {
+                    width: 15rem;
+                    border: 10px solid var(--light-yellow);
+                }
+
+                .home-page__intro-quote {
+                    font-family: "Crimson", "Times New Roman", serif;
+                    font-size: 1.5rem;
+                }
+
+                .home-page__intro-signature {
+                    text-align: right;
+                    font-size: 0.8rem;
+                    margin-top: 1rem;
+                }
+
+            }
+
+
+        }
+    }
+}

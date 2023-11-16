@@ -82,6 +82,10 @@ a {
   text-decoration: none;
 }
 
+html {
+  /* background-color: var(--dark-gray); */
+}
+
 
 body {
   font-family: "Quicksand", Arial, Helvetica, sans-serif;

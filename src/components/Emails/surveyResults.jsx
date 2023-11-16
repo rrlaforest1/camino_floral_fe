@@ -1,134 +1,61 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import styled from "styled-components";
-
-// npm i @emailjs/browser
 
 const Email = () => {
+  const [sentMessage, setSentMessage] = useState(false);
   const form = useRef();
 
-  const cosa = {
-    1: {
-      1: [true, false],
-      2: [false, false],
-      3: [true, false],
-    },
-    4: {
-      1: [true, false],
-      2: [false, false],
-      3: [true, false],
-    },
-  };
-
-  const form2 = {
-    name_user: "Toto",
-    message: JSON.stringify(cosa),
-  };
-
-  console.log("form2", form2);
-
-  console.log("FOOOORM", form);
+  console.log("FOOOORM");
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // emailjs
-    //       .sendForm(
-    //         "service_caorvdv",
-    //         "template_eeogsks",
-    //         form.current,
-    //         "MBVoUNAsoGmdV0Dpt"
-    //       )
-    //       .then(
-    //         (result) => {
-    //           console.log(result.text);
-    //           console.log("message sent");
-    //         },
-    //         (error) => {
-    //           console.log(error.text);
-    //         }
-    //       );
-    //   };
     emailjs
-      .send("service_caorvdv", "template_eeogsks", form2, "MBVoUNAsoGmdV0Dpt")
+      .sendForm(
+        "service_caorvdv",
+        "template_ybkphqc",
+        form.current,
+        "MBVoUNAsoGmdV0Dpt"
+      )
       .then(
         (result) => {
           console.log(result.text);
-          console.log("message test #2 sent");
+          console.log("message sent");
         },
         (error) => {
           console.log(error.text);
         }
       );
+
+    handleSentMessage();
+    form.current.reset();
   };
 
+  function handleSentMessage() {
+    setSentMessage(true);
+    setTimeout(() => {
+      setSentMessage(false);
+    }, 1000 * 3);
+  }
+
   return (
-    <StyledContactForm>
+    <>
       <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
+        <label>Nombre y apellido</label>
+        <input autoComplete="off" type="text" name="user_name" />
+        <label>E-mail</label>
+        <input autoComplete="off" type="email" name="user_email" />
+        <label>Mensaje</label>
         <textarea name="message" />
-        <input type="submit" value="Send" />
+        <button>Enviar</button>
+        {sentMessage && (
+          <div className="contact-page__sent-message">
+            ¡Gracias! Tu mensaje a sido enviado.
+          </div>
+        )}
       </form>
-    </StyledContactForm>
+    </>
   );
 };
 
 export default Email;
-
-// Styles
-const StyledContactForm = styled.div`
-  width: 400px;
-
-  form {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    font-size: 16px;
-
-    input {
-      width: 100%;
-      height: 35px;
-      padding: 7px;
-      outline: none;
-      border-radius: 5px;
-      border: 1px solid rgb(220, 220, 220);
-
-      &:focus {
-        border: 2px solid rgba(0, 206, 158, 1);
-      }
-    }
-
-    textarea {
-      max-width: 100%;
-      min-width: 100%;
-      width: 100%;
-      max-height: 100px;
-      min-height: 100px;
-      padding: 7px;
-      outline: none;
-      border-radius: 5px;
-      border: 1px solid rgb(220, 220, 220);
-
-      &:focus {
-        border: 2px solid rgba(0, 206, 158, 1);
-      }
-    }
-
-    label {
-      margin-top: 1rem;
-    }
-
-    input[type="submit"] {
-      margin-top: 2rem;
-      cursor: pointer;
-      background: rgb(249, 105, 14);
-      color: white;
-      border: none;
-    }
-  }
-`;

@@ -1,5 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Email from "../../components/Emails/surveyResults";
+import "./ContactPage.css";
 
 function ContactPage() {
   useEffect(() => {
@@ -10,8 +11,12 @@ function ContactPage() {
   }, []);
   return (
     <>
-      <div>ContactPage</div>
-      <Email />
+      <div className="contact-page">
+        <div className="contat-page__wrapper">
+          <h3>Contacto</h3>
+          <Email />
+        </div>
+      </div>
     </>
   );
 }

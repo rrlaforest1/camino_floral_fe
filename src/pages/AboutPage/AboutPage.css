@@ -1,0 +1,70 @@
+.about-page {
+    .about-page__wrapper {
+        max-width: 1024px;
+        margin: 3rem auto;
+        background-color: white;
+        border-radius: 30px;
+        padding: 3rem;
+    }
+
+    & h3 {
+        font-family: "Crimson", "Times New Roman", serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .about-page__me {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 5rem;
+
+        & img {
+            width: 50%;
+            height: auto;
+            border: 1px solid var(--dark-gray);
+        }
+
+        &>div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        & p {
+            margin-bottom: 1rem;
+        }
+
+        .about-page__to-form {
+            padding: 0.5rem 3rem;
+            background-color: var(--dark-indigo);
+            color: var(--dark-gray);
+            display: inline-block;
+            margin: auto;
+            font-family: "Crimson";
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+    }
+
+    .about-page__bach {
+        & h4 {
+            margin-bottom: 1rem;
+            font-family: "Crimson";
+            font-size: 1.5rem;
+        }
+
+        &>div {
+            & img {
+                width: 40%;
+                display: block;
+                margin: 1rem auto;
+            }
+        }
+
+        & p {
+            margin-bottom: 2rem;
+        }
+    }
+}

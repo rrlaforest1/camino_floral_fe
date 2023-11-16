@@ -5,7 +5,7 @@ import { appRoutes } from "../../const/app-routes";
 import { useAuth } from "./../../context/AuthContext";
 import emailjs from "@emailjs/browser";
 
-import "./SurveyFinalPage.css";
+// import "./SurveyFinalPage.css";
 
 function SurveyFinalPage({ form, formData, formResults, setFormResults }) {
   const { isLoggedIn, authenticateUser, user } = useAuth();
