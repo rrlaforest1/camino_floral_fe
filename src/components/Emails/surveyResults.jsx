@@ -5,8 +5,6 @@ const Email = () => {
   const [sentMessage, setSentMessage] = useState(false);
   const form = useRef();
 
-  console.log("FOOOORM");
-
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -19,8 +17,7 @@ const Email = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
-          console.log("message sent");
+          console.log(result.text, "message sent");
         },
         (error) => {
           console.log(error.text);

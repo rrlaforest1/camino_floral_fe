@@ -5,7 +5,7 @@ import { appRoutes } from "../../const/app-routes";
 import { useAuth } from "./../../context/AuthContext";
 import emailjs from "@emailjs/browser";
 
-// import "./SurveyFinalPage.css";
+import "./SurveyFinalPage.css";
 
 function SurveyFinalPage({ form, formData, formResults, setFormResults }) {
   const { isLoggedIn, authenticateUser, user } = useAuth();
@@ -137,10 +137,11 @@ function SurveyFinalPage({ form, formData, formResults, setFormResults }) {
           </div>
           <form onSubmit={handleSubmit}>
             <label htmlFor="extrainfo">
-              ¿Hay algo más que nos quieres comentar sobre tu estado emocional o
-              las cosas que te afectan?
+              Esta es tu oportunidad! No ¿Hay algo más que nos quieres comentar
+              sobre tu estado emocional o las cosas que te afectan?
             </label>
             <textarea
+              placeholder="Estoy muy estresado ultimamente, no puedo dormir y tengo mucho trabajo..."
               name=""
               id="extrainfo"
               cols="30"
