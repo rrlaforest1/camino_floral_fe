@@ -13,6 +13,11 @@ function AboutPage() {
     <>
       <div className="about-page">
         <div className="about-page__wrapper">
+          <img
+            className="about-page__logo-image"
+            src="/images/flower_black.png"
+            alt=""
+          />
           <h3>Acerca de mí y Bach</h3>
 
           <div className="about-page__me">

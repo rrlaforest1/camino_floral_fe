@@ -7,6 +7,12 @@
         padding: 3rem;
     }
 
+    .about-page__logo-image {
+        width: 6rem;
+        display: block;
+        margin: 0 auto;
+    }
+
     & h3 {
         font-family: "Crimson", "Times New Roman", serif;
         font-size: 3rem;
