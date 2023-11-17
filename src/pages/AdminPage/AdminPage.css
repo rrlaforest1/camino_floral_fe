@@ -1,0 +1,123 @@
+.admin-page {
+    .admin-page__wrapper {
+        max-width: 1024px;
+        margin: 5rem auto;
+        padding: 3rem;
+        background-color: var(--light-violet);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    & h2 {
+        font-family: "Crimson", "Times New Roman", serif;
+        font-size: 3rem;
+    }
+
+    .admin-page__edit-form-btn {
+        cursor: pointer;
+        font-family: "Crimson", "Times New Roman", serif;
+        font-size: 1.2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background-color: var(--dark-gray);
+        padding: 1rem;
+        border-radius: 20px;
+
+        & svg {
+            display: block;
+            width: 2rem;
+        }
+    }
+
+    .admin-page__form {
+        width: 100%;
+    }
+
+    .admin-page__form-cat {
+        padding: 3rem;
+        margin: 2rem 0;
+        margin-bottom: 2rem;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+
+        & h3 {
+            font-size: 2rem;
+        }
+
+        & h4 {
+            font-size: 1.5rem;
+            padding-left: 0.5rem;
+        }
+
+        & h5 {
+            font-size: 1.2rem;
+            padding-left: 1rem;
+        }
+
+        & p {
+            padding-left: 1.5rem;
+        }
+    }
+
+    .admin-page__form-cat-edit {
+        & label {
+            font-size: 2rem;
+        }
+
+    }
+
+    & form {
+        padding: 3rem;
+        margin-bottom: 2rem;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        & input {
+            height: 2rem;
+            padding: 0.3rem;
+            border-radius: 3px;
+            display: block;
+            margin: 0.2rem 0 0.6rem 0;
+            width: 30rem;
+            font-family: "Crimson", "Times New Roman", serif;
+            font-size: 1rem;
+            color: #333;
+        }
+    }
+
+
+    .admin-page__form-subcat-edit {
+        & label {
+            font-size: 1.5rem;
+        }
+    }
+
+    .admin-page__form-questions-edit {
+        & label {
+            font-size: 1rem;
+        }
+    }
+
+    & button {
+        padding: 0.5rem 1.5rem;
+        background-color: var(--dark-gray);
+        color: white;
+        display: inline-block;
+        margin: auto;
+        font-family: "Crimson";
+        font-size: 1.1rem;
+        margin-top: 2rem;
+        cursor: pointer;
+    }
+
+}

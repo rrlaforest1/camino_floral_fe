@@ -48,16 +48,18 @@ function Navbar() {
               Contacto
             </NavLink>
           </li>
+          {isLoggedIn && user.role == "admin" && (
+            <li>
+              <NavLink className="nav-contact" to="/adminpage">
+                Editar Formulario
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
 
       <div>
         <ul>
-          {/* {isLoggedIn ? (
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          ) : ( */}
           <>
             <li>
               <NavLink className="nav-gotoform-btn" to={appRoutes.Survey}>

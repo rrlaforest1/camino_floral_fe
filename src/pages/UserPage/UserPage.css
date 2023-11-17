@@ -31,6 +31,10 @@
             padding: 0.5rem;
         }
 
+        .user-page__infos-surveys {
+            max-width: 70%;
+        }
+
         .user-page__infos-wrapper {
             font-family: "Crimson", "Times New Roman", serif;
             padding: 0.5rem;

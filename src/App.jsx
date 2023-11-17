@@ -27,10 +27,9 @@ import SignInPage from "./pages/SignInPage/SignInPage";
 import "./App.css";
 
 function App() {
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState([0, 1, 2, 3, 4, 5, 6]);
   const [formData, setFormData] = useState([]);
   const [formResults, setFormResults] = useState({});
-  console.log("App formResults", formResults);
 
   return (
     <>
@@ -58,6 +57,7 @@ function App() {
                   <SurveySectionPage
                     form={form}
                     formData={formData}
+                    setFormData={setFormData}
                     formResults={formResults}
                     setFormResults={setFormResults}
                   />

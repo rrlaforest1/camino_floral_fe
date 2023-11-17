@@ -314,18 +314,18 @@
             align-items: center;
 
             & li {
-                width: 10%;
+                width: 14.2%;
                 height: 10px;
                 transition: all 0.5s linear;
 
 
                 &[data-state="current"] {
-                    height: 13px;
+                    height: 20px;
                     width: 12%;
                 }
 
                 &[data-state="passed"] {
-                    opacity: 0.3;
+                    opacity: 1;
                 }
 
                 &[data-index="0"] {

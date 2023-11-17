@@ -16,7 +16,6 @@ function UserPage() {
   async function fetchSurveyAnswers() {
     try {
       const response = await myApi.getSurveyAnswers();
-      console.log("SURVEY ANSWERS", response);
       setSurveyAnswers(response);
     } catch (error) {
       setError(error.response.data.message);

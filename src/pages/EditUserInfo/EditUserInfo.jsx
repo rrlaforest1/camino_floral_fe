@@ -7,17 +7,14 @@ import { appRoutes } from "../../const/app-routes";
 import "./EditUserInfo.css";
 
 function EditUserInfo() {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const [error, setError] = useState("");
-  const [update, setUpdate] = useState(false);
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,
   });
 
   const navigate = useNavigate();
-
-  console.log("USER BBBBB", user);
 
   const handleChange = (event) => {
     const key = event.target.id;
@@ -32,10 +29,10 @@ function EditUserInfo() {
 
     try {
       await myApi.put(`/user/${user._id}`, formData);
-      setUpdate(!update);
+      // setUser(formData);
       navigate(appRoutes.User);
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
       setError(error.response.data.message);
       setTimeout(() => {
         setError("");

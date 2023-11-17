@@ -28,6 +28,7 @@
 
                 & span {
                     border-bottom: 1px solid var(--dark-gray);
+                    font-weight: 800;
                 }
             }
 
@@ -58,7 +59,7 @@
 
             &>div {
                 background-color: rgba(255, 255, 255, 0.6);
-                padding: 2rem;
+                padding: 1.5rem;
             }
 
             & h3 {
@@ -98,6 +99,7 @@
 
             & h4 {
                 font-family: "Crimson", "Times New Roman", serif;
+                font-size: 1.3rem;
 
                 & span {
                     display: block;

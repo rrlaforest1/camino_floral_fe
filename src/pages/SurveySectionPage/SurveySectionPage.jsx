@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { form_es } from "../../const/forms-data";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../const/app-routes";
 
 import "./SurveySectionPage.css";
 
+import { motion as m } from "framer-motion";
+
 function SurveySectionPage({ form, formData, formResults, setFormResults }) {
   const { sectionId } = useParams();
   const navigate = useNavigate();
+
+  if (!Object.keys(formData).length) {
+    const formInLS = localStorage.getItem("formInLocal");
+    formData = JSON.parse(formInLS);
+  }
 
   useEffect(() => {
     document.body.classList.add(`survey-section-${sectionId}`);
@@ -17,7 +23,7 @@ function SurveySectionPage({ form, formData, formResults, setFormResults }) {
   }, [sectionId]);
 
   let formChecks = {};
-  if (formResults[sectionId]) {
+  if (Object.keys(formResults).length > 0 && formResults[sectionId]) {
     //if there are result for this section apply thme
     formChecks = formResults[sectionId];
   } else {
@@ -127,124 +133,122 @@ function SurveySectionPage({ form, formData, formResults, setFormResults }) {
 
   if (!Object.keys(checkedInputs).length) {
     return <div>Loading...</div>;
-  } else {
-    console.log(
-      "done loading",
-      Object.keys(checkedInputs).length,
-      checkedInputs
-    );
   }
   return (
-    <>
-      <div className="form-component">
-        <form>
-          <div className="form__sections">
-            <div className="form__section-top">
-              <h3 className="form__section-title">
-                {formData.categories[sectionId].name}
-              </h3>
-              <p>
-                Selecciona todas las opciones que más se adapten a tu realidad
-                actual si ninguna se no pasa nada :) no selecciona ningun.
-                Cuando estés listo presiona <span>Siguiente</span>{" "}
-              </p>
-            </div>
-            <div className="form__section-subsections">
-              <div className="form__subsections-slider">
-                {formData.categories[sectionId].subsections.map(
-                  (subsection, ind) => {
-                    return (
-                      <div
-                        key={`${sectionId}section${ind}`}
-                        className={`form__subsection ${
-                          ind == "0" ? "current" : ""
-                        }`}
-                        data-index={ind}
-                      >
-                        <h2>{subsection.name}</h2>
-                        <div className="form_subsection-questions">
-                          {subsection.questions.map((question, i) => {
-                            return (
-                              <label
-                                key={`${sectionId}section${ind}-question${i}`}
-                                htmlFor={`section${sectionId}subsection${ind}-question${i}`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  value={`${ind}_${i}`}
-                                  id={`section${sectionId}subsection${ind}-question${i}`}
-                                  checked={checkedInputs[ind][i]}
-                                  onChange={() => handleChange(ind, i)}
-                                />
-                                <span className="checkmark"></span>
-                                {question}
-                              </label>
-                            );
-                          })}
-                        </div>
+    <m.div
+      initial={{ x: "100%" }}
+      animate={{ x: "0%" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      exti={{ x: "100%" }}
+      className="form-component"
+    >
+      <form>
+        <div className="form__sections">
+          <div className="form__section-top">
+            <h3 className="form__section-title">
+              {formData.categories[sectionId].name}
+            </h3>
+            <p>
+              Selecciona todas las opciones que más se adapten a tu realidad
+              actual si ninguna se no pasa nada :) no selecciona ningun. Cuando
+              estés listo presiona <span>Siguiente</span>{" "}
+            </p>
+          </div>
+          <div className="form__section-subsections">
+            <div className="form__subsections-slider">
+              {formData.categories[sectionId].subsections.map(
+                (subsection, ind) => {
+                  return (
+                    <div
+                      key={`${sectionId}section${ind}`}
+                      className={`form__subsection ${
+                        ind == "0" ? "current" : ""
+                      }`}
+                      data-index={ind}
+                    >
+                      <h2>{subsection.name}</h2>
+                      <div className="form_subsection-questions">
+                        {subsection.questions.map((question, i) => {
+                          return (
+                            <label
+                              key={`${sectionId}section${ind}-question${i}`}
+                              htmlFor={`section${sectionId}subsection${ind}-question${i}`}
+                            >
+                              <input
+                                type="checkbox"
+                                value={`${ind}_${i}`}
+                                id={`section${sectionId}subsection${ind}-question${i}`}
+                                checked={checkedInputs[ind][i]}
+                                onChange={() => handleChange(ind, i)}
+                              />
+                              <span className="checkmark"></span>
+                              {question}
+                            </label>
+                          );
+                        })}
                       </div>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-            <div className="form__subsection-slider-nav">
-              <div onClick={() => handleSlider("prev", event)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Anterior</span>
-              </div>
-              <div onClick={() => handleSlider("next", event)}>
-                <span>Siguiente</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
+                    </div>
+                  );
+                }
+              )}
             </div>
           </div>
-        </form>
-
-        <div className="progress">
-          <ul>
-            {form.map((section, index) => {
-              return (
-                <li
-                  key={`progress-section${index}`}
-                  className="progress-item"
-                  data-index={section}
-                  data-state={
-                    Number(section) < Number(sectionId)
-                      ? "passed"
-                      : Number(section) == Number(sectionId)
-                      ? "current"
-                      : ""
-                  }
-                ></li>
-              );
-            })}
-          </ul>
+          <div className="form__subsection-slider-nav">
+            <div onClick={() => handleSlider("prev", event)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span>Anterior</span>
+            </div>
+            <div onClick={() => handleSlider("next", event)}>
+              <span>Siguiente</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
+      </form>
+
+      <div className="progress">
+        <ul>
+          {form.map((section, index) => {
+            return (
+              <li
+                key={`progress-section${index}`}
+                className="progress-item"
+                data-index={section}
+                data-state={
+                  Number(section) < Number(sectionId)
+                    ? "passed"
+                    : Number(section) == Number(sectionId)
+                    ? "current"
+                    : ""
+                }
+              ></li>
+            );
+          })}
+        </ul>
       </div>
-    </>
+    </m.div>
   );
 }
 

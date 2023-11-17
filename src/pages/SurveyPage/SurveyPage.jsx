@@ -1,12 +1,14 @@
-import { form_es } from "../../const/forms-data";
 import React, { useEffect, useState } from "react";
+import { Navigate, Outlet, useNavigate, Link } from "react-router-dom";
+import { useAuth } from "./../../context/AuthContext";
 import { appRoutes } from "../../const/app-routes";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { form_es } from "../../const/forms-data";
 import myApi from "./../../service/service";
 
 import "./SurveyPage.css";
 
 function SurveyPage({ setForm, setFormData }) {
+  const { isLoggedIn, authenticateUser, user } = useAuth();
   const [checkedInputs, setCheckedInputs] = useState(
     new Array(form_es.length).fill(false)
   );
@@ -17,6 +19,7 @@ function SurveyPage({ setForm, setFormData }) {
     try {
       const formFromDB = await myApi.getFormES();
       setFormData(formFromDB[0]);
+      localStorage.setItem("formInLocal", JSON.stringify(formFromDB[0]));
     } catch (error) {
       setError(error.response.data.message);
       setTimeout(() => {
@@ -35,19 +38,9 @@ function SurveyPage({ setForm, setFormData }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // let selectedSections = checkedInputs
-    //   .map((item, index) => {
-    //     if (item) {
-    //       return index;
-    //     }
-    //   })
-    //   .filter((element) => element !== undefined);
+    // let selectedSections = [3, 4];
 
-    // console.log("selectedSections", selectedSections);
-
-    let selectedSections = [3, 4];
-
-    setForm(selectedSections);
+    // setForm(selectedSections);
 
     navigate("/survey/pre");
   }
@@ -67,24 +60,21 @@ function SurveyPage({ setForm, setFormData }) {
     <>
       <div className="survey-page">
         <div className="survey-page__wrapper">
-          <h1>
-            Estamos casi listos para elaborar un tratamiento hecho a tu medida
-          </h1>
+          <h1>¿Estás listo para elaborar un tratamiento hecho a tu medida?</h1>
 
           <p>
-            Las Flores de Bach permiten armonizar la personalidad del individuo
-            a través de un método simple y natural de acción muy suave, sin
-            provocar reacciones desagradables ni efectos adversos, sin crear
-            interferencias con otras formas de tratamiento ni dependencia.
+            Para poder elaborar este formulario es necesario estar conectad@ ya
+            que los resultados son personales y confidenciales. Porfavor
+            conéctate y vuelve para iniciar con el formulario.
           </p>
 
-          <p>
+          {/* <p>
             Esta forma de tratamiento no se usa para las dolencias físicas sino
             para tratar los estados emocionales negativos que puede sufrir una
             persona en un determinado momento y que puede agotar la vitalidad
             del individuo haciendo que el cuerpo pierda su sistema natural y se
             vuelva mas vulnerable a las enfermedades.
-          </p>
+          </p> */}
 
           {/* <h2>
             Pero primero, selecciona cual de las siguiente secciones te está
@@ -109,7 +99,13 @@ function SurveyPage({ setForm, setFormData }) {
                 </div>
               );
             })} */}
-            <button className="survey-btn__form">Confirmar</button>
+            {isLoggedIn ? (
+              <button className="survey-btn__form">Confirmar</button>
+            ) : (
+              <Link to={appRoutes.SignIn} className="survey-btn__form">
+                Conectarse
+              </Link>
+            )}
           </form>
         </div>
       </div>
