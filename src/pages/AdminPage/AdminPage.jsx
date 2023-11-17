@@ -126,7 +126,7 @@ function AdminPage() {
                             id={`catefory${catInd}`}
                             type="text"
                           />
-                          <ul key={`ul-form-cat${catInd}subcat${subcatInd}`}>
+                          <ul key={`ul-form-cat${catInd}`}>
                             {cat.subsections.map((subcat, subcatInd) => {
                               return (
                                 <li

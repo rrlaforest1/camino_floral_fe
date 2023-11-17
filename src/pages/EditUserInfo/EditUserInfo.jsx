@@ -28,8 +28,8 @@ function EditUserInfo() {
     // const password = passwordInput.current.value;
 
     try {
-      await myApi.put(`/user/${user._id}`, formData);
-      // setUser(formData);
+      const cosa = await myApi.put(`/user/${user._id}`, formData);
+      setUser(cosa.data);
       navigate(appRoutes.User);
     } catch (error) {
       console.log(error);

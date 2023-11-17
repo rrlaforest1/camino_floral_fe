@@ -80,13 +80,11 @@ function App() {
                 }
               />
             </Route>
-            {/* The conversations routes should be accessible only if a user */}
-            {/* is Logged in */}
+
             <Route element={<LoggedInUser />}>
               <Route path={appRoutes.User} element={<UserPage />} />
               <Route path={appRoutes.EditUser} element={<EditUserInfo />} />
             </Route>
-            {/* Login / Signup routes should be accessible to Logged out users */}
 
             <Route element={<LoggedOutUser />}>
               <Route path={appRoutes.Subscribe} element={<SubscribePage />} />

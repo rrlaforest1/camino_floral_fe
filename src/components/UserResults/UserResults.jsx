@@ -20,25 +20,15 @@ function UserResults({ surveyAnswers, setSurveyAnswers }) {
       setSurveyAnswers(newAnswers);
     } catch (error) {
       console.log(error.response);
-      setError(error.response.data.message);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
     }
   }
 
   async function handleDelete() {
-    console.log("click DELETE");
     try {
       await myApi.delete(`/user`);
-      console.log("all deleted");
       setSurveyAnswers([]);
     } catch (error) {
       console.log(error.response);
-      setError(error.response.data.message);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
     }
   }
 
