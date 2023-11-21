@@ -14,8 +14,6 @@ function Navbar() {
     authenticateUser();
   };
 
-  console.log("USER", user);
-
   const userName = user ? user.username : "";
 
   return (
@@ -48,7 +46,7 @@ function Navbar() {
               Contacto
             </NavLink>
           </li>
-          {isLoggedIn && user.role == "admin" && (
+          {isLoggedIn && user && user.role == "admin" && (
             <li>
               <NavLink className="nav-contact" to="/adminpage">
                 Editar Formulario
